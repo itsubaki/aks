@@ -51,7 +51,32 @@ func IsPrime(n int) bool {
 }
 
 func findR(n int) int {
-	return n
+	if n < 2 {
+		return 2
+	}
+
+	bound := bits.Len(uint(n))
+	bound *= bound
+
+	for r := 2; ; r++ {
+		if number.GCD(n, r) != 1 {
+			continue
+		}
+
+		base := n % r
+		x := 1
+
+		for k := 1; k <= bound; k++ {
+			x = number.MulMod(x, base, r)
+			if x == 1 {
+				break
+			}
+		}
+
+		if x != 1 {
+			return r
+		}
+	}
 }
 
 func EulerPhi(n int) int {
