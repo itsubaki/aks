@@ -13,10 +13,26 @@ func TestIsPrime(t *testing.T) {
 	}{
 		{n: 0, want: false},
 		{n: 1, want: false},
-		{n: 2, want: true},
-		{n: 3, want: true},
+		{n: 4, want: false},
+		{n: 6, want: false},
+		{n: 8, want: false},
 		{n: 9, want: false},
 		{n: 25, want: false},
+		{n: 49, want: false},
+		{n: 2, want: true},
+		{n: 3, want: true},
+		{n: 5, want: true},
+		{n: 7, want: true},
+		{n: 13, want: true},
+		{n: 17, want: true},
+		{n: 19, want: true},
+		{n: 23, want: true},
+		{n: 29, want: true},
+		{n: 31, want: true},
+		{n: 37, want: true},
+		{n: 41, want: true},
+		{n: 43, want: true},
+		{n: 47, want: true},
 	}
 
 	for _, c := range cases {
