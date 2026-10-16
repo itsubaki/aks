@@ -33,9 +33,9 @@ func IsPrime(n uint64) bool {
 		return true
 	}
 
-	sqrtPhi := math.Sqrt(float64(EulerPhi(n)))
 	bitLen := bits.Len64(n)
-	limit := math.Ceil(sqrtPhi * float64(bitLen))
+	sqrtPhi := math.Sqrt(float64(EulerPhi(n)))
+	limit := math.Ceil(float64(bitLen) * sqrtPhi)
 	for a := uint64(1); a < uint64(limit)+1; a++ {
 		if number.GCD(a, n) > 1 {
 			return false
