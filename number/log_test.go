@@ -8,8 +8,8 @@ import (
 
 func TestLog2(t *testing.T) {
 	cases := []struct {
-		n    int
-		want int
+		n    uint64
+		want uint64
 	}{
 		{1, 0},
 		{2, 1},

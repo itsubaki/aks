@@ -1,6 +1,6 @@
 package number
 
-func AddMod(a, b, m int) int {
+func AddMod(a, b, m uint64) uint64 {
 	if a >= m-b {
 		return a - (m - b)
 	}
@@ -8,10 +8,10 @@ func AddMod(a, b, m int) int {
 	return a + b
 }
 
-func MulMod(a, b, m int) int {
+func MulMod(a, b, m uint64) uint64 {
 	a %= m
 
-	var result int
+	var result uint64
 	for b > 0 {
 		if b&1 != 0 {
 			result = AddMod(result, a, m)

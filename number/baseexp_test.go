@@ -8,8 +8,8 @@ import (
 
 func TestBaseExp(t *testing.T) {
 	cases := []struct {
-		in   int
-		a, b int
+		in   uint64
+		a, b uint64
 		ok   bool
 	}{
 		{0, 0, 1, true},

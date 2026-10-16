@@ -8,10 +8,10 @@ import (
 
 func TestIsPrime(t *testing.T) {
 	cases := []struct {
-		n    int
+		n    uint64
 		want bool
 	}{
-		{n: -1, want: false},
+		{n: 0, want: false},
 		{n: 1, want: false},
 		{n: 2, want: true},
 		{n: 3, want: true},
@@ -31,8 +31,8 @@ func TestIsPrime(t *testing.T) {
 
 func TestIsEulerPhi(t *testing.T) {
 	cases := []struct {
-		n    int
-		want int
+		n    uint64
+		want uint64
 	}{
 		{n: 1, want: 1},
 		{n: 2, want: 1},

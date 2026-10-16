@@ -8,8 +8,8 @@ import (
 
 func TestPow(t *testing.T) {
 	cases := []struct {
-		a, r int
-		want int
+		a, r uint64
+		want uint64
 	}{
 		{0, 4, 0},
 		{2, 0, 1},

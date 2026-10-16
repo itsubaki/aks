@@ -1,7 +1,7 @@
 package number
 
 // Pow returns a^r.
-func Pow(a, r int) int {
+func Pow(a, r uint64) uint64 {
 	if a == 0 {
 		return 0
 	}
@@ -11,7 +11,7 @@ func Pow(a, r int) int {
 	}
 
 	// exponentiation by squaring
-	p := 1
+	p := uint64(1)
 	for r > 0 {
 		if r&1 == 1 {
 			p = p * a

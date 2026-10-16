@@ -8,7 +8,7 @@ import (
 	"github.com/itsubaki/aks/poly"
 )
 
-func IsPrime(n int) bool {
+func IsPrime(n uint64) bool {
 	if n == 2 || n == 3 {
 		return true
 	}
@@ -21,8 +21,8 @@ func IsPrime(n int) bool {
 		return false
 	}
 
-	r := findR(n)
-	for a := 2; a < r+1; a++ {
+	r := FindR(n)
+	for a := uint64(2); a < uint64(r)+1; a++ {
 		g := number.GCD(a, n)
 		if g > 1 && g < n {
 			return false
@@ -34,10 +34,9 @@ func IsPrime(n int) bool {
 	}
 
 	sqrtPhi := math.Sqrt(float64(EulerPhi(n)))
-	bitLen := bits.Len64(uint64(n))
-	limit := int(math.Ceil(sqrtPhi * float64(bitLen)))
-
-	for a := 1; a < limit+1; a++ {
+	bitLen := bits.Len64(n)
+	limit := math.Ceil(sqrtPhi * float64(bitLen))
+	for a := uint64(1); a < uint64(limit)+1; a++ {
 		if number.GCD(a, n) > 1 {
 			return false
 		}
@@ -50,23 +49,21 @@ func IsPrime(n int) bool {
 	return true
 }
 
-func findR(n int) int {
+func FindR(n uint64) uint64 {
 	if n < 2 {
 		return 2
 	}
 
-	bound := bits.Len(uint(n))
+	bound := bits.Len64(n)
 	bound *= bound
-
-	for r := 2; ; r++ {
+	for r := uint64(2); ; r++ {
 		if number.GCD(n, r) != 1 {
 			continue
 		}
 
 		base := n % r
-		x := 1
-
-		for k := 1; k <= bound; k++ {
+		x := uint64(1)
+		for k := uint64(1); k <= uint64(bound); k++ {
 			x = number.MulMod(x, base, r)
 			if x == 1 {
 				break
@@ -79,21 +76,21 @@ func findR(n int) int {
 	}
 }
 
-func EulerPhi(n int) int {
-	result, x := n, n
-	for p := 2; p < x/p+1; p++ {
+func EulerPhi(n uint64) uint64 {
+	phi, x := n, n
+	for p := uint64(2); p < x/p+1; p++ {
 		if x%p == 0 {
 			for x%p == 0 {
 				x /= p
 			}
 
-			result -= result / p
+			phi -= phi / p
 		}
 	}
 
 	if x > 1 {
-		result -= result / x
+		phi -= phi / x
 	}
 
-	return result
+	return phi
 }
